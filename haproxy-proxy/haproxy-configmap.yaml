@@ -9,7 +9,6 @@ data:
         log stdout format raw local0
         maxconn 4096
         daemon
-        stats socket /run/haproxy/admin.sock mode 600 level admin
 
     defaults
         log global
