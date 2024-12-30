@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: traefik-config
+  namespace: traefik-tools
+data:
+  dynamic.yaml: |
+    http:
+      routers:
+        proxmox-router:
+          rule: "Host(`proxmox.local`)"
+          service: proxmox-service
+          entryPoints:
+            - websecure
+
+      services:
+        proxmox-service:
+          loadBalancer:
+            servers:
+            - url: "https://192.168.1.101:8006"
+
