@@ -11,7 +11,13 @@ data:
           rule: "PathPrefix(`/`)"
           service: proxmox-service
           entryPoints:
-            - "websecure"
+            - websecure
+
+        dashboard-router:
+          rule: "PathPrefix(`/dashboard`)"
+          service: api@internal
+          entryPoints:
+            - traefik
 
       services:
         proxmox-service:

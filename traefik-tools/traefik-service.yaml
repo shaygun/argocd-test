@@ -18,3 +18,7 @@ spec:
       port: 443        # Internal port (entryPoint: websecure)
       targetPort: 443  # Container port
       nodePort: 30081  # Exposed NodePort
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 30082
