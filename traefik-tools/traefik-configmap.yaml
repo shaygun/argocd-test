@@ -8,7 +8,7 @@ data:
     http:
       routers:
         proxmox-router:
-          rule: "Host(`proxmox.local`)"
+          rule: "PathPrefix(`/`)"
           service: proxmox-service
           entryPoints:
             - websecure
