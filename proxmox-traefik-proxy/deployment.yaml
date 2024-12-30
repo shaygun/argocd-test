@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traefik-proxy
+  namespace: traefik-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: traefik-proxy
+  template:
+    metadata:
+      labels:
+        app: traefik-proxy
+    spec:
+      containers:
+      - name: traefik
+        image: traefik:v2.10
+        args:
+          - "--entrypoints.websecure.address=:443"
+          - "--providers.file.directory=/config"
+        volumeMounts:
+        - name: config-volume
+          mountPath: /config
+        ports:
+        - containerPort: 443
+      volumes:
+      - name: config-volume
+        configMap:
+          name: traefik-proxy-config
+

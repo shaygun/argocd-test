@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: traefik-proxy-config
+  namespace: traefik-proxy
+data:
+  traefik-dynamic.yaml: |
+    http:
+      routers:
+        proxmox-router:
+          rule: "PathPrefix(`/`)"  # Match all traffic
+          service: proxmox-service
+          entryPoints:
+            - websecure
+          tls:  # Pass through TLS
+            passthrough: true
+      services:
+        proxmox-service:
+          loadBalancer:
+            servers:
+              - url: "https://192.168.1.101:8006"  # Proxmox API server
+    entryPoints:
+      websecure:
+        address: ":443"
+

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: traefik-proxy
+  namespace: traefik-proxy
+spec:
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 443
+      targetPort: 443
+      nodePort: 30081
+  selector:
+    app: traefik-proxy
+
