@@ -9,9 +9,12 @@ data:
       routers:
         proxmox-router:
           rule: "PathPrefix(`/`)"
+          middlewares:
+            - default-headers
+            - https-redirectscheme
           service: proxmox-service
           entryPoints:
-            - websecure
+            - "https"
 
       services:
         proxmox-service:
