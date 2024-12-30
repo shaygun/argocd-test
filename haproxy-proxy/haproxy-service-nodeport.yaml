@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: haproxy
+  namespace: haproxy-tools
+spec:
+  selector:
+    app: haproxy
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 443         # Internal port of the HAProxy pod
+    targetPort: 443   # Port on the HAProxy container
+    nodePort: 30081   # External port accessible on the cluster nodes
+

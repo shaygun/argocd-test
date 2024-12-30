@@ -2,26 +2,30 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: haproxy-config
-  namespace: proxmox-proxy
+  namespace: haproxy-tools
 data:
   haproxy.cfg: |
     global
         log stdout format raw local0
         maxconn 4096
+        daemon
+        stats socket /run/haproxy/admin.sock mode 600 level admin
 
     defaults
         log global
         mode tcp
         option tcplog
         timeout connect 10s
-        timeout client  30s
-        timeout server  30s
+        timeout client 30s
+        timeout server 30s
 
     frontend https_proxy
         bind *:443
         default_backend proxmox_backend
         mode tcp
+
     backend proxmox_backend
         mode tcp
-        server proxmox 192.168.1.101:8006 check
+        balance roundrobin
+        server proxmox 192.168.1.101:8006 check inter 2s rise 2 fall 3
 
