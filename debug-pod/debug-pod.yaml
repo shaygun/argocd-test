@@ -2,16 +2,22 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: debug-pod
-  namespace: debug-tools  # Replace with the desired namespace
+  namespace: debug-tools  # Ensure this namespace is created in advance or managed by ArgoCD
   labels:
     app: debug-pod
 spec:
   containers:
   - name: debug-container
-    image: ubuntu:20.04  # Use an image with a package manager like apt
-    command: [ "sleep", "infinity" ]  # Keep the pod running indefinitely
+    image: ubuntu:20.04  # A lightweight image with apt support
+    command: [ "sleep", "infinity" ]  # Keep the pod running
     stdin: true
     tty: true
+    securityContext:
+      allowPrivilegeEscalation: true  # Allow for advanced networking tools like `ping`
+      capabilities:
+        add:
+        - NET_ADMIN  # Required for certain networking commands
+        - SYS_ADMIN
     resources:
       requests:
         cpu: "100m"
@@ -19,10 +25,5 @@ spec:
       limits:
         cpu: "500m"
         memory: "256Mi"
-    securityContext:
-      allowPrivilegeEscalation: true
-      capabilities:
-        add:
-        - NET_ADMIN
   restartPolicy: Always
 
