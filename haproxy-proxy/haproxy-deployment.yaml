@@ -24,7 +24,7 @@ spec:
         - name: haproxy-config
           mountPath: /usr/local/etc/haproxy/haproxy.cfg
           subPath: haproxy.cfg
-        command: ["haproxy", "-f", "/usr/local/etc/haproxy/haproxy.cfg"]
+        command: ["haproxy", "-f", "/usr/local/etc/haproxy/haproxy.cfg", "-d"]
       volumes:
       - name: haproxy-config
         configMap:
