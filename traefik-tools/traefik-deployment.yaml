@@ -26,6 +26,7 @@ spec:
         - "--accesslog=true"
         - "--api.insecure=true"
         - "--api.dashboard=true"
+        - "--serversTransport.insecureSkipVerify=true"
         ports:
         - name: web
           containerPort: 80
