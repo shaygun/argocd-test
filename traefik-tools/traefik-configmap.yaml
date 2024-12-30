@@ -8,7 +8,7 @@ data:
     http:
       routers:
         proxmox-router:
-          rule: "PathPrefix(`/`)"
+          rule: "HostSNI(`*`)"
           middlewares:
             - default-headers
             - https-redirectscheme
