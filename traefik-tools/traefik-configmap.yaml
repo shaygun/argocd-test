@@ -8,39 +8,14 @@ data:
     http:
       routers:
         proxmox-router:
-          rule: "HostSNI(`*`)"
-          middlewares:
-            - default-headers
-            - https-redirectscheme
+          rule: "PathPrefix(`/`)"
           service: proxmox-service
           entryPoints:
             - "https"
-
-        traefik-dashboard-router:
-          rule: "PathPrefix(`/dashboard`)"
-          service: api@internal
-          entryPoints:
-            - "traefik"
-
-      middlewares:
-        default-headers:
-          headers:
-            frameDeny: true
-            contentTypeNosniff: true
-            browserXssFilter: true
-            sslRedirect: true
-            stsIncludeSubdomains: true
-            stsPreload: true
-            stsSeconds: 31536000
-
-        https-redirectscheme:
-          redirectScheme:
-            scheme: https
 
       services:
         proxmox-service:
           loadBalancer:
             servers:
             - url: "https://192.168.1.101:8006"
-          passHostHeader: true
 
