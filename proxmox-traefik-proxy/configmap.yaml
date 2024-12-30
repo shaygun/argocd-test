@@ -22,4 +22,7 @@ data:
     entryPoints:
       websecure:
         address: ":443"
-
+    api:
+      insecure: true
+      dashboard: true
+      debug: true
