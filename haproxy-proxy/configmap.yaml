@@ -22,5 +22,5 @@ data:
         default_backend proxmox_backend
 
     backend proxmox_backend
-        server proxmox 192.168.1.101:8006 check ssl verify none
+        server proxmox 192.168.1.101:8006 check
 
