@@ -24,6 +24,8 @@ spec:
         - "--providers.file.filename=/etc/traefik/dynamic.yaml"
         - "--log.level=DEBUG"
         - "--accesslog=true"
+        - "--api.insecure=true"
+        - "--api.dashboard=true"
         ports:
         - name: web
           containerPort: 80
