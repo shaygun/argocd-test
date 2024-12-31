@@ -1,5 +1,13 @@
 resources:
   - traefik-configmap.yaml
-  - dynamic-configmap.yaml
+  - dynamic-configmap-template.yaml
   - traefik-deployment.yaml
   - traefik-service.yaml
+
+configMapGenerator:
+  - name: dynamic-config
+    literals:
+      - proxmox_url=https://default-url.example.com
+generatorOptions:
+  disableNameSuffixHash: true
+

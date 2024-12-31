@@ -1,6 +1,7 @@
 resources:
   - ../../base
   - namespace.yaml
+  - env-configmap.yaml
 
 namespace: cuid01
 
