@@ -1,7 +1,12 @@
 resources:
   - ../../base
   - namespace.yaml
-  - env-configmap.yaml
+
+configMapGenerator:
+  - name: dynamic-config
+    behavior: merge
+    literals:
+      - PROXMOX_URL=https://192.168.1.101:8006
 
 namespace: cuid01
 

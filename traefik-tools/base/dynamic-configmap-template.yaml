@@ -16,6 +16,6 @@ data:
         proxmox:
           loadBalancer:
             servers:
-              - url: $(PROXMOX_URL)
+              - url: ${PROXMOX_URL}
             passHostHeader: true
 
