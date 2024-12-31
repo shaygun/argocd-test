@@ -1,6 +1,12 @@
 resources:
-  - deployment.yaml
-  - service.yaml
+  - ../../base
   - namespace.yaml
 
+patches:
+  - path: deployment-patch.yaml
+    target:
+      kind: Deployment
+      name: hello-world
+
 namespace: cuid01
+

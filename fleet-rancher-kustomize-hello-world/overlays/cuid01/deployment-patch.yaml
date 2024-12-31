@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world
+spec:
+  template:
+    spec:
+      containers:
+        - name: hello-world
+          ports:
+            - containerPort: 8080 # Overriding the port for this overlay
+
