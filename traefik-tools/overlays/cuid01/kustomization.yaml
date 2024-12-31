@@ -4,7 +4,7 @@ resources:
 
 configMapGenerator:
   - name: dynamic-config
-    behavior: replace
+    behavior: merge
     literals:
       - PROXMOX_URL=https://192.168.1.101:8006
 
