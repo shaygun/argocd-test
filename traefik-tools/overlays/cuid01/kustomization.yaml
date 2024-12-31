@@ -7,6 +7,10 @@ patches:
       kind: ConfigMap
       name: dynamic-config
     patch: |-
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: dynamic-config
       data:
         dynamic.yml: |
           http:
