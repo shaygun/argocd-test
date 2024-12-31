@@ -13,6 +13,8 @@ spec:
     metadata:
       labels:
         app: traefik
+      annotations:
+        checksum/config: "{{ .Values.dynamicConfig | sha256sum }}"
     spec:
       containers:
         - name: traefik
