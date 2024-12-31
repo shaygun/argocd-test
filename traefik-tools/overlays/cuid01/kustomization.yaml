@@ -1,6 +1,28 @@
 resources:
   - ../../base
   - namespace.yaml
-  - dynamic-configmap.yaml
+
+patches:
+  - target:
+      kind: ConfigMap
+      name: dynamic-config
+    patch: |-
+      data:
+        dynamic.yml: |
+          http:
+            routers:
+              proxmox-router:
+                rule: "PathPrefix(`/`)"
+                service: proxmox
+                entryPoints:
+                  - websecure
+                tls: {}
+            services:
+              proxmox:
+                loadBalancer:
+                  servers:
+                    - url: https://192.168.1.101
+                  passHostHeader: true
 
 namespace: cuid01
+
