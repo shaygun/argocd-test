@@ -9,6 +9,10 @@ data:
         address: ":80"
       websecure:
         address: ":443"
+        http:
+          tls:
+            certResolver: default # Use the default certificate resolver
+
       dashboard:
         address: ":8081"
     api:
