@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: traefik-config
+data:
+  traefik.yml: |
+    entryPoints:
+      web:
+        address: ":80"
+      websecure:
+        address: ":443"
+        http:
+          tls:
+            certResolver: default # Use the default certificate resolver
+
+      dashboard:
+        address: ":8081"
+    api:
+      dashboard: true
+      insecure: true
+    providers:
+      file:
+        filename: "/config/dynamic.yml"
+        watch: true
+    log:
+      level: DEBUG
+    serversTransport:
+      insecureSkipVerify: true
+
