@@ -6,7 +6,7 @@ resources:
 configMapGenerator:
   - name: dynamic-config
     files:
-      - dynamic-configmap-template.yaml
+      - dynamic.yml=dynamic-configmap-template.yaml
     literals:
       - PROXMOX_URL=https://default-url.example.com
 generatorOptions:
