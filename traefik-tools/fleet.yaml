@@ -1,0 +1,14 @@
+defaultNamespace: traefik-tools
+targets:
+  - name: cuid01
+    clusterSelector:
+      matchLabels:
+        environment: cuid01
+    manifests:
+      - path: traefik-tools/overlays/cuid01
+  - name: base
+    clusterSelector:
+      matchLabels:
+        environment: base
+    manifests:
+      - path: traefik-tools/base
