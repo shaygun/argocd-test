@@ -13,8 +13,6 @@ spec:
     metadata:
       labels:
         app: traefik
-      annotations:
-        checksum/config: "{{ .Values.dynamicConfig | sha256sum }}"
     spec:
       containers:
         - name: traefik
@@ -26,11 +24,9 @@ spec:
               containerPort: 443
           volumeMounts:
             - name: traefik-config
-              mountPath: /etc/traefik/traefik.yml
-              subPath: traefik.yml
+              mountPath: /etc/traefik
             - name: dynamic-config
-              mountPath: /config/dynamic.yml
-              subPath: dynamic.yml
+              mountPath: /config
       volumes:
         - name: traefik-config
           configMap:
