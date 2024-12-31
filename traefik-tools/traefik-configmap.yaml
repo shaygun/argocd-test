@@ -21,6 +21,7 @@ data:
     providers:
       file:
         filename: "/config/dynamic.yml"
+        watch: true
     log:
       level: DEBUG
     serversTransport:
