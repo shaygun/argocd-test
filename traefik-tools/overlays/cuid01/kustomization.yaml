@@ -2,8 +2,13 @@ resources:
   - ../../base
   - namespace.yaml
 
-patchesStrategicMerge:
-  - url-patch.yaml
+patchesJson6902:
+  - target:
+      group: ""
+      version: v1
+      kind: ConfigMap
+      name: dynamic-config
+    path: url-patch.json
 
 namespace: cuid01
 
