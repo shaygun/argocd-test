@@ -9,5 +9,5 @@ data:
         proxmox:
           loadBalancer:
             servers:
-              - url: https://192.168.1.101
+              - url: https://192.168.1.101:8006
 
