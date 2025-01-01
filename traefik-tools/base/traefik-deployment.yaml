@@ -33,6 +33,8 @@ spec:
           configMap:
             name: traefik-config
         - name: dynamic-config
-          configMap:
-            name: dynamic-config
+          projected:
+            sources:
+              - configMap:
+                  name: dynamic-config
 
