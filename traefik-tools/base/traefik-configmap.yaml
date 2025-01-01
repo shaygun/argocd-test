@@ -13,7 +13,7 @@ data:
       dashboard: true
     providers:
       file:
-        filename: "/config/dynamic.yml"
+        filename: "/config"
         watch: true
     log:
       level: DEBUG
