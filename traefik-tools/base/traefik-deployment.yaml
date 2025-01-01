@@ -13,6 +13,8 @@ spec:
     metadata:
       labels:
         app: traefik
+      annotations:
+        configmap.reloaded.at: "{{now | date('RFC3339')}}" # Forces pod restart on ConfigMap change
     spec:
       containers:
         - name: traefik
