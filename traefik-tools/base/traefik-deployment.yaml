@@ -26,7 +26,8 @@ spec:
             - name: traefik-config
               mountPath: /etc/traefik
             - name: dynamic-config
-              mountPath: /config
+              mountPath: /config/dynamic.yml
+              subPath: dynamic.yml
       volumes:
         - name: traefik-config
           configMap:
