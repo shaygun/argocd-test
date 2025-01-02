@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traefik
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: traefik
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: traefik
+  template:
+    metadata:
+      labels:
+        app: traefik
+    spec:
+      containers:
+        - name: traefik
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          ports:
+            - name: http
+              containerPort: 80
+            - name: https
+              containerPort: 443
+          volumeMounts:
+            - name: traefik-config
+              mountPath: /etc/traefik
+            - name: dynamic-config
+              mountPath: /config
+      volumes:
+        - name: traefik-config
+          configMap:
+            name: traefik-config
+        - name: dynamic-config
+          configMap:
+            name: dynamic-config
+
