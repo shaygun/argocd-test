@@ -10,3 +10,8 @@ proxmox:
 service:
   type: NodePort
 
+
+serviceAccount:
+  create: true
+  name: ""
+
